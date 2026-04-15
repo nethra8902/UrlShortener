@@ -66,21 +66,4 @@ Given more time or scale requirements, I would:
 - Swap SQLite for Postgres, wired up via `docker-compose`
 - Add a Redis caching layer in front of the redirect endpoint for hot slugs
 
-## Trade-offs made
 
-| Decision | Reasoning |
-|----------|-----------|
-| **302 over 301 redirects** | 301 is cached by browsers — we'd lose click tracking entirely |
-| **SQLite** | Zero infrastructure setup; swappable by changing one line in `Program.cs` |
-| **No auth** | Would add API key middleware before any real deployment |
-| **No rate limiting** | `AddRateLimiter` with a fixed window policy on `/shorten` would be first addition |
-| **Soft delete not implemented** | Would add before production use for referential integrity |
-
-## What's next
-
-- [ ] API key authentication
-- [ ] Rate limiting on `/shorten`
-- [ ] Custom slug support
-- [ ] Redis caching for hot slugs
-- [ ] Postgres + docker-compose
-- [ ] Integration tests with `WebApplicationFactory`
